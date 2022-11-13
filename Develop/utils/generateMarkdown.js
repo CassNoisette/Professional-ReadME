@@ -17,9 +17,9 @@ function renderLicenseLink(license) {
     return `
     [${license}](https://choosealicense.com/licenses/${license})
       `;
-    } else {
-      return ' ';
-    }
+  } else {
+    return ' ';
+  }
 }
 
 // TODO: Create a function that returns the license section of README
@@ -31,56 +31,52 @@ function renderLicenseSection(license) {
     The application is covered under the following license:
     ${renderLicenseLink(license)}
       `;
-    } else {
-      return ' ';
-    }
+  } else {
+    return ' ';
+  }
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `
   
-  # ${data.title}
-    ${data.description}
-    ${data.licenseBadge}
-    [See deployed version](${data.URL})
-    
+  # Title
+   ${data.title}
   ---
 
-  ## About
-    ${data.about}
-  ---
-  ## User Story
-    
-  ---
-  ## Acceptance Criteria
-    
-  ---
-  ## Installation:
-    ${data.installation}
+  ## Description
+   ${data.description}
+   ---
 
-    To clone the repo:
-    
-        git clone ${data.clone}
-    
+   ## Table of contents
+   ${data.contents}
+   ---
+
+   ## Installation
+   ${data.installation}
+   ---
+
+   ## criteria
+   ${data.usage}
+   ---
+
+   ## Collaboration
+     ${data.credits}
   ---
+
+  ## Website:
+  [See deployed version](${data.URL})
+  ---
+
+  ## Contact Information:
+  * GitHub Username: ${data.userName}
+  ---
+
   ## License
     License used for this project - ${data.license}
     
-  
-  ---
-  ## Tests:
-    ${data.test}
-  ---
-  ## Authors and Acknowledgments
-    ${data.author}
-  ---
-  ## Contact Information:
-  * GitHub Username: ${data.userName}
-  * GitHub Email: ${data.userEmail}
-    
   `;
-  
+
 }
 
 module.exports = generateMarkdown;

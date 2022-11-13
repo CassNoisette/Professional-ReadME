@@ -34,8 +34,8 @@ const questions =
 },
 {
     type : "input",
-    message: "How to use the project?",
-    name: "usage",
+    message: "What are the acceptance criterias?",
+    name: "criteria",
     validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
 },
 {
@@ -44,6 +44,19 @@ const questions =
     name: "credits",
     validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
 },
+{
+    type : "input",
+    message: "Provide your deployed website, if applicable",
+    name: "URL",
+    validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
+},
+{
+    type : "input",
+    message: "Please provide your GitHub username",
+    name: "userName",
+    validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
+},
+
 {
     type : "list",
     message: "Which license did you use?",
@@ -55,24 +68,26 @@ const questions =
 
 
 
-// TODO: Create a function to write README file
+
+
+// function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile (`./dist/${fileName}`, data, err => {
+    fs.writeFile(`./utils/${fileName}`, data, err => {
         if (err) {
             throw err
         };
-        console.log('README created!')
+        console.log('New README created!')
     });
 };
-
-// TODO: Create a function to initialize app
+// function to initialize program
 function init() {
-    inquirer
-    .prompt(questions)
-    .then ((answers)=>{
-        console.log(answers)
-    })
-}
-
-// Function call to initialize app
-init();
+    return inquirer.prompt(questions);
+};
+// function call to initialize program
+init()
+    
+    .then(answers => generateMarkdown(answers))
+    .then(newReadme => writeToFile('README.md', newReadme))
+    .catch(err => {
+        console.log(err);
+    });
