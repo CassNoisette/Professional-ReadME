@@ -1,58 +1,73 @@
 // TODO: Include packages needed for this application
-var generator = require ("./generator");
-var fs = require ("fs");
-var inqurer = require ('inquirer');
-
+const fs = require ("fs");
+const inquirer = require ('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
-let questions = [
+const questions =
+    [
 
 {
     type : "input",
     message: "What is the title of your project?",
-    name: "title"
-
+    name: "title",
+    // validate properties to check that the user provided an answer
+    validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
+},
+{
     type : "input",
     message: "Provide a description of the project.",
-    name: "description"
-
-
+    name: "description",
+    validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
+},
+{
     type : "input",
     message: "Add a table of contents, if applicable.",
-    name: "table of contents"
-
-
+    name: "contents",
+    validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
+},
+{
     type : "input",
     message: "What are the steps required to install your project?",
-    name: "installation"
-
-
+    name: "installation",
+    validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
+},
+{
     type : "input",
     message: "How to use the project?",
-    name: "Usage"
-
+    name: "usage",
+    validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
+},
+{
     type : "input",
     message: "List your collaborators, if any, along with links to their Github profiles",
-    name: "credits"
-
-    type : "input",
+    name: "credits",
+    validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
+},
+{
+    type : "list",
     message: "Which license did you use?",
-    name: "license"
-
-
+    name: "license",
+    choices:['MIT licence','GPL licence','Apache license', 'N/A'],
+    validate: (value)=>{if(value){return true} else {return "please provide an answer to continue"}}
 }
+]
 
 
-
-
-
-];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile (fileName, data)
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer
+    .prompt(questions)
+    .then ((answers)=>{
+        console.log(answers)
+    })
+}
 
 // Function call to initialize app
 init();
