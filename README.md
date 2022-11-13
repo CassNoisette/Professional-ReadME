@@ -32,4 +32,4 @@
     License used for this project - MIT licence
     
   ## Demo Video
-  (./Develop/ReadMeDemo.gif)
+  ![Demo](./Develop/assets/ReadMeDemo.gif)
