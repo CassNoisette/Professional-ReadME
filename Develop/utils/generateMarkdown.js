@@ -57,7 +57,7 @@ function generateMarkdown(data) {
    ---
 
    ## criteria
-   ${data.usage}
+   ${data.criteria}
    ---
 
    ## Collaboration
